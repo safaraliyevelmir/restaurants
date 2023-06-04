@@ -17,8 +17,8 @@ class RestaurantViewSet(viewsets.ModelViewSet):
 
         if radius and lat and lng:
             queryset = queryset.filter(
-                latitude__range=(float(queryset.latitude) - float(lat), float(queryset.latitude) + float(lat)),
-                longitude__range=(float(queryset.longitude) - float(lng),float(queryset.longitude) + float(lng),)
+                latitude__range=(float(lat) - float(radius), float(lat) + float(radius)),
+                longitude__range=(float(lng) - float(radius), float(lng) + float(radius))
             )
 
         return queryset
