@@ -30,19 +30,21 @@ ALLOWED_HOSTS = ['*']
 
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,
-    # 'SECURITY_DEFINITIONS': {
-    #     'Token': {
-    #         'type': 'apiKey',
-    #         'name': 'Authorization',
-    #         'in': 'header'
-    #     }
-    # }
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
 }
 
 
 # Application definition
 
 INSTALLED_APPS = [
+        'drf_yasg',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'restaurants',
-    'drf_yasg',
     'rest_framework',
 ]
 
@@ -134,7 +135,6 @@ import os
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
