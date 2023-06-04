@@ -22,3 +22,15 @@ class RestaurantViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(latitude__gte=min_lat, latitude__lte=max_lat, longitude__gte=min_lng, longitude__lte=max_lng)
 
         return queryset
+    
+
+""""
+    {
+        "id": 1,
+        "fire_id": "blabla",
+        "nane": "Bla",
+        "latitude": 41.5,
+        "longitude": -87.5
+    }
+
+"""
