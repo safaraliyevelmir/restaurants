@@ -4,10 +4,8 @@ from .models import Restaurant
 from .serializers import RestaurantSerializers
 
 class RestaurantViewSet(viewsets.ModelViewSet):
-
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializers
-
 
     def get_queryset(self):
         queryset = Restaurant.objects.all()
@@ -16,9 +14,11 @@ class RestaurantViewSet(viewsets.ModelViewSet):
         lng = self.request.query_params.get('lng')
 
         if radius and lat and lng:
-            queryset = queryset.filter(
-                latitude__range=(float(lat) - float(radius), float(lat) + float(radius)),
-                longitude__range=(float(lng) - float(radius), float(lng) + float(radius))
-            )
+            min_lat = float(lat) - float(radius)
+            max_lat = float(lat) + float(radius)
+            min_lng = float(lng) - float(radius)
+            max_lng = float(lng) + float(radius)
+
+            queryset = queryset.filter(latitude__gte=min_lat, latitude__lte=max_lat, longitude__gte=min_lng, longitude__lte=max_lng)
 
         return queryset
