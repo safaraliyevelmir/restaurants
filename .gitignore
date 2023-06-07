@@ -2,6 +2,8 @@
 # Backup files # 
 *.bak 
 
+.db.sqlit3
+
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
