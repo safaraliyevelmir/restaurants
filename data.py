@@ -8,6 +8,6 @@ json_data = json.loads(text);
 for i in json_data:
     data = {"fire_id": i["id"], "name":i["name"],"latitude":i["latitude"],"longitude":i["longtude"]}
 
-    post = res.post("https://restaurants0staging.herokuapp.com/restaurants/",data=data)
+    post = res.post("http://206.189.199.212/restaurants/",data=data)
     print(post.status_code)
     print(post.content)

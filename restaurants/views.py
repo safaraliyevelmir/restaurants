@@ -3,12 +3,15 @@ from rest_framework import viewsets
 from .models import Restaurant
 from .serializers import RestaurantSerializers
 
+from rest_framework.pagination import LimitOffsetPagination
+
 class RestaurantViewSet(viewsets.ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializers
+    pagination_class = LimitOffsetPagination
 
     def get_queryset(self):
-        queryset = Restaurant.objects.all()
+        queryset = super().get_queryset()
         radius = self.request.query_params.get('radius')
         lat = self.request.query_params.get('lat')
         lng = self.request.query_params.get('lng')
@@ -22,7 +25,7 @@ class RestaurantViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(latitude__gte=min_lat, latitude__lte=max_lat, longitude__gte=min_lng, longitude__lte=max_lng)
 
         return queryset
-    
+
 
 """"
     {
