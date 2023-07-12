@@ -52,7 +52,7 @@ class Restaurant(models.Model):
     visit_count = models.IntegerField(default=0)
     service_status = models.CharField(max_length=255,null=True)
 
-    payment_option = models.ForeignKey(PaymentOption,on_delete=models.SET_NULL,related_name='restaurant_payment',null=True)
+    payment_option = models.ManyToManyField(PaymentOption,related_name='restaurant_payment')
     service_option = models.ForeignKey(ServiceOption,on_delete=models.SET_NULL,related_name='restaurant_service',null=True)
     dining_option = models.ForeignKey(DiningOption,on_delete=models.SET_NULL,related_name='restaurant_diening',null=True)
     amenitie = models.ForeignKey(Amnetie,on_delete=models.SET_NULL,related_name='restaurant_amnetie',null=True)
@@ -60,7 +60,6 @@ class Restaurant(models.Model):
     dietary_option = models.ForeignKey(DietaryOption,on_delete=models.SET_NULL,related_name='restaurant_dietary',null=True)
     interior = models.ForeignKey(Interior,on_delete=models.SET_NULL,related_name='restaurant_interior',null=True)
 
-    fire_id = models.CharField(max_length=255)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
